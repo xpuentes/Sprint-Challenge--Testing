@@ -11,9 +11,9 @@ server.get('/', async (req, res) => {
 });
 
 server.get('/games', async (req, res) => {
-  const rows = await games.getAll();
+  const allTheGames = await games.getAll();
 
-  res.status(200).json(rows);
+  res.status(200).json(allTheGames);
 });
 
 // server.post('/games', async (req, res) => {
