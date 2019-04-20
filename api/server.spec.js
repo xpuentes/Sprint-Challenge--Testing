@@ -42,3 +42,14 @@ describe('GET /games', () => {
     expect(data[0].releaseYear).toBe(1980);
   });
 });
+
+describe('POST /games', () => {
+  beforeEach(() => {
+    return db('games').truncate();
+  });
+
+  it('should return HTTP status of 422, if db is empty', async () => {
+    const res = await request(server).post('/games');
+    expect(res.status).toBe(422);
+  });
+});
