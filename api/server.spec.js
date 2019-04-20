@@ -48,7 +48,7 @@ describe('POST /games', () => {
     return db('games').truncate();
   });
 
-  it('should return HTTP status of 422, if db is empty', async () => {
+  it('should return HTTP status of 422, if missing title or genre', async () => {
     const res = await request(server).post('/games');
     expect(res.status).toBe(422);
   });
