@@ -16,7 +16,15 @@ server.get('/games', async (req, res) => {
   res.status(200).json(allTheGames);
 });
 
-// server.post('/games', async (req, res) => {
-// });
+server.post('/games', async (req, res) => {
+  const { title, genre } = req.body;
+
+  if(!title || !genre){
+    res.status(422).json({message: 'Title and Genre are required'});
+  } else {
+    const game = await games.insert(req.body);
+    res.status(201).json(game);
+  }
+});
 
 module.exports = server;
