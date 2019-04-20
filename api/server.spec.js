@@ -52,4 +52,19 @@ describe('POST /games', () => {
     const res = await request(server).post('/games');
     expect(res.status).toBe(422);
   });
+
+  it('should return HTTP status of 201, if games are inserted successfuly', async () => {
+    const res = await request(server).post('/games').send({
+      title: 'Pacman',
+      genre: 'Arcade',
+      releaseYear: 1980
+    });
+
+    const data = res.body;
+
+    expect(res.status).toBe(201);
+    expect(data.id).toBe(1);
+    expect(data.title).toBe('Pacman');
+    expect(data.releaseYear).toBe(1980);
+  });
 });
